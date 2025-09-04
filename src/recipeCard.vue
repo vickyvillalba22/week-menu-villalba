@@ -2,7 +2,12 @@
 
     import { ref } from 'vue'
 
-    defineProps(['titulo', 'imagen', 'descripcion'])
+    import MasInfo from './components/mas-info.vue'
+
+    defineProps<{
+      titulo: string
+      imagen: string
+    }>()
 
 </script>
 
@@ -11,8 +16,8 @@
   <div class="cardRecipe">
     <img :src="imagen" alt="Imagen de receta" />
     <h3>{{ titulo }}</h3>
-    <p>{{ descripcion }}</p>
-    <button>Mas info</button>
+
+    <MasInfo />
     <button>Agregar</button>
   </div>
 
@@ -20,9 +25,15 @@
 
 <style scoped>
 
+h3{
+  font-size: 15px;
+  font-weight: 300;
+}
+
 .cardRecipe {
 
     width: 30%;
+    height: 30vh;
     border-radius: 10px;
     padding: 1rem;
     text-align: center;

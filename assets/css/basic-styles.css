@@ -6,8 +6,13 @@
     font-family: sans-serif;
 }
 
+:root {
+    --borde-rojo: 3px solid red;
+}
+
+
 .bordeRojo{
-    border: 3px solid red;
+    border: var(--borde-rojo)
 }
 .bordeVerde{
     border: 3px solid greenyellow;
@@ -80,6 +85,11 @@ h1,h2,h3,p,button,span,input{
 .ajusteBoton{
     padding: 7px 7px;
     border-radius: 5px;
+}
+
+/*iconos*/
+i{
+    font-size: 16px;
 }
 
 /*acomodar*/

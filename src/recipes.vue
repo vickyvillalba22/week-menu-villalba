@@ -50,6 +50,14 @@
   const categorias = ref<string[]>([])
   interface Categoria { strCategory: string }
 
+  //armo el array donde vendrán las recetas de cada categoria, vacio para que cuando se haga el fetch, se le asigne el resultado
+  const recetas = ref<any[]>([])
+  interface Meal {
+  idMeal: string
+  strMeal: string
+  strMealThumb: string
+  }
+
   //traigo los datos onMounted
   onMounted(async ()=>{
 
@@ -72,9 +80,18 @@
   //funcion fetch para mostrar recetas luego de tocar una de las categorías
   async function mostrarRecetas(categoria: string){
     try {
+
       const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoria}`)
       const data = await res.json()
-      console.log(data);
+
+      //le actualizo el contenido a recetas que ya está declarado arriba
+      recetas.value = data.meals.map((meal: Meal) => ({
+          id: meal.idMeal,
+          titulo: meal.strMeal,
+          imagen: meal.strMealThumb,
+          descripcion: "Descripción pendiente"
+      }))
+
     } catch (error) {
       console.log(error); 
     }
@@ -82,20 +99,22 @@
 
 </script>
 
-<template id="catalogo">
+<template> 
 
-  <div id="cont1" class="w90 vh85 df columna">
+  <div class="w90 vh90"> <!--este es el componente recipes-->
+
+    <div id="cont1" class="w90 df columna">
     <!--titulo princi dinamico-->
-    <h1 v-html="appTitle"></h1>
+    <h1 v-html="appTitle" class="w100"></h1>
 
     <!--buscador-->
-    <div id="buscador">
+    <div id="buscador" class="df spaceb w100">
       <input type="text" name="" id="buscador" class="w80 sinBorde bordeRedondo">
-      <button id="buscar" class="ajusteBoton sinBorde">buscar</button>
-      <button id="filtrar" class="fondoRojo sinBorde ajusteBoton blanco">filtros</button>
+      <button id="buscar" class="ajusteBoton sinBorde fondoTransparente"><i class="fi fi-rr-search"></i></button>
+      <button id="filtrar" class="fondoRojo sinBorde ajusteBoton blanco"><i class="fi fi-rr-filter"></i></button>
     </div>
 
-    <!--catálogo-->
+    <!--categorias-->
     <div id="categorias" class="w100 df wrap">
 
       <button @click="mostrarRecetas(cat)" v-for="cat in categorias" :key="cat" class="ajusteBoton sinBorde fondoBlanco">
@@ -104,21 +123,22 @@
 
     </div>
 
-    <div id="meals"></div>
+    <!--recetas-->
+    <div id="meals" class="df wrap vh50 w100">
+
+      <RecipeCard
+        v-for="receta in recetas"
+        :key="receta.id"
+        :titulo="receta.titulo"
+        :imagen="receta.imagen"
+      />
+
+    </div>
+
+    </div>
 
   </div>
 
-  <!--
-  <div id="recetasCont" class="df wrap">
-    <RecipeCard
-      v-for="receta in recetas"
-      :key="receta.id"
-      :titulo="receta.titulo"
-      :imagen="receta.imagen"
-      :descripcion="receta.descripcion"
-    />
-  </div>
-  -->
   
 </template>
 
@@ -126,6 +146,7 @@
 
   #cont1{
     gap: 20px;
+    height: 80vh;
   }
 
   #categorias{
@@ -136,5 +157,11 @@
     height: 30px;
   }
 
-</style>
+  #meals{
+    gap: 15px;
+    overflow: hidden;
+    overflow: auto;
+    scroll-behavior: smooth;
+  }
 
+</style>
