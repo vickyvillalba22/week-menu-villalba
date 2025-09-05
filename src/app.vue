@@ -1,11 +1,15 @@
 <script>
 
 import Recipes from './recipes.vue'
+import Week from './week.vue';
+import Lista from './lista.vue'
 
 export default {
   name: 'App',
   components: {
-    Recipes
+    Recipes,
+    Week,
+    Lista
   }
 }
 
@@ -17,11 +21,13 @@ export default {
 
     <div class="w90 df spacee">
 
-      <Recipes id="recipes" class="w45 vh90 df centerX centerY" />
+      <Recipes id="recipes" class="w45 vh90 df centerX centerY glass" />
 
       <div class="df columna spaceb w45 centerY vh90">
-        <section id="week" class="fondoGris w100 vh40"></section>
-        <section id="list" class="fondoGris w100 vh40"></section>
+
+        <Week class="glass w100" />
+        <Lista id="list" class="glass w100 vh30" />
+
       </div>
 
     </div>

@@ -24,7 +24,7 @@ body{
     background-size: cover;
 }
 
-#recipes{
+.glass{
     background-color: rgba(226, 226, 226, 0.499);
     border-radius: 16px;                   /* bordes redondeados */
     backdrop-filter: blur(10px);           /* desenfoque del fondo */
@@ -60,6 +60,9 @@ body{
 .fondoRojo{
     background-color: #FA7459;
 }
+.fondoAzul{
+    background-color: #58B5C2;
+}
 .fondoGris{
     background-color: rgb(180, 179, 179);
 }
@@ -74,7 +77,7 @@ body{
   font-family: 'creatoDisplay'; /* Nombre que le darás a la fuente */
   src: url('../creato-display/CreatoDisplay-Regular.otf'); /* Ruta y formato del archivo */
 }
-h1,h2,h3,p,button,span,input{
+h1,h2,h3,h4,p,button,span,input{
     font-family: "creatoDisplay", 'openSans';
 }
 .textCenter{
@@ -164,6 +167,9 @@ i{
 }
 .vh25{
     height: 25vh;
+}
+.vh20{
+    height: 20vh;
 }
 .vh10{
     height: 10vh;
