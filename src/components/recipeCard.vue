@@ -3,7 +3,6 @@
     import { ref } from 'vue'
 
     import MasInfo from './mas-info.vue'
-    import Agregar from './agregar.vue';
 
     defineProps<{
       titulo: string
@@ -21,7 +20,6 @@
 
     <div class="botones df spaceb w100 centerY centerX">
       <MasInfo />
-      <Agregar />
     </div>
 
   </div>

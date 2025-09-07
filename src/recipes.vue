@@ -3,6 +3,7 @@
   import { ref, onMounted } from 'vue'
 
   import RecipeCard from './components/recipeCard.vue'
+  import draggable from 'vuedraggable'
 
   let appTitle = "Recetas ideales para cada día"
 
@@ -84,16 +85,16 @@
     </div>
 
     <!--recetas-->
-    <div id="meals" class="df wrap vh50 w100">
+      <draggable :list="recetas" item-key="id" id="meals" class="df wrap vh50 w100" group="recetas">
 
-      <RecipeCard
-        v-for="receta in recetas"
-        :key="receta.id"
-        :titulo="receta.titulo"
-        :imagen="receta.imagen"
-      />
+        <template #item="{ element }">
+          <RecipeCard
+            :titulo="element.titulo"
+            :imagen="element.imagen"
+          />
+        </template>
 
-    </div>
+      </draggable>
 
     </div>
 
