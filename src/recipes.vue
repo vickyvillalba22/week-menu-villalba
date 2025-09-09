@@ -85,7 +85,7 @@
     </div>
 
     <!--recetas-->
-      <draggable :list="recetas" item-key="id" id="meals" class="df wrap vh50 w100" group="recetas">
+      <draggable :list="recetas" item-key="id" id="meals" class="df wrap vh50 w100" :group="{ name: 'recetas', pull: 'clone', put: false}">
 
         <template #item="{ element }">
           <RecipeCard

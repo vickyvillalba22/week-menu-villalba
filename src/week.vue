@@ -26,6 +26,8 @@ const days = ref([
         },
     ])
 
+const eliminadas = []
+
 function vaciarMenu (array){
 
     for(let day of array){
@@ -50,11 +52,11 @@ function vaciarMenu (array){
 
     <div id="semana" class="w100">
 
-        <div v-for="day in days" class="textCenter"> 
+        <div v-for="day in days" class="textCenter dia"> 
 
             <h4>{{ day.name }}</h4>
 
-            <draggable :list="day.comidasAgregadas" class="comidas" group="recetas" item-key="id">
+            <draggable :list="day.comidasAgregadas" class="comidas df columna" :group="{ name: 'recetas', pull: true, put: true}" item-key="id">
 
                 <template #item="{element}">
                     <div class="fondoBlanco cardcita">
@@ -65,6 +67,24 @@ function vaciarMenu (array){
             </draggable>
 
         </div>
+
+        <draggable 
+            :list="eliminadas" 
+            item-key="id" 
+            :group="{ name: 'recetas', pull: false, put: true }" id="eliminadas" 
+            class="df centerX">
+
+              <!-- Slot item requerido -->
+            <template #item="{ element }"></template>
+
+            <template #footer>
+
+                    <i class="fi fi-rr-circle-trash df centerY"></i>
+
+            </template>
+
+        </draggable>
+        
 
     </div>
 
@@ -84,6 +104,20 @@ function vaciarMenu (array){
         gap: 10px;
         padding: 10px;
     }
+    .dia{
+        height: 35vh;
+    }
+    #eliminadas{
+        grid-column: 1 / span 5;
+
+        background-color: rgba(255, 255, 255, 0.881);
+        border-radius: 10px;
+        padding: 5px;
+    }
+    #eliminadas i{
+        font-size: 25px;
+        color: #FA7459;
+    }
     h4{
         padding: 5px;
     }
@@ -92,6 +126,7 @@ function vaciarMenu (array){
     }
     .comidas{
         height: 35vh;
+        gap: 10px;
     }
 
     .cardcita{
