@@ -13,7 +13,7 @@ const days = ref([
             comidasAgregadas: []
         },
                 {
-            name: "Miercoles",
+            name: "Miércoles",
             comidasAgregadas: []
         },
                 {
@@ -59,9 +59,17 @@ function vaciarMenu (array){
             <draggable :list="day.comidasAgregadas" class="comidas df columna" :group="{ name: 'recetas', pull: true, put: true}" item-key="id">
 
                 <template #item="{element}">
+
                     <div class="fondoBlanco cardcita">
                         <p>{{ element.titulo }}</p>
                     </div>
+
+                </template>
+
+                  <template #footer>
+                    <p v-if="day.comidasAgregadas.length === 0" class="placeholder">
+                    Arrastra aquí tus recetas
+                    </p>
                 </template>
 
             </draggable>
@@ -74,12 +82,18 @@ function vaciarMenu (array){
             :group="{ name: 'recetas', pull: false, put: true }" id="eliminadas" 
             class="df centerX">
 
-              <!-- Slot item requerido -->
+            <!-- Slot item requerido -->
             <template #item="{ element }"></template>
 
             <template #footer>
 
+                <div class="df centerY w40 spacee">
+
                     <i class="fi fi-rr-circle-trash df centerY"></i>
+
+                    <p class="placeholder">Arrastra aquí para eliminar</p>
+
+                </div>
 
             </template>
 
@@ -132,9 +146,15 @@ function vaciarMenu (array){
     .cardcita{
         border-radius: 8px;
         padding: 10px;
+
     }
     .cardcita p{
         font-size: 13px;
+    }
+
+    .placeholder{
+        font-size: 12px;
+        color: gray;
     }
 
 </style>

@@ -1,4 +1,7 @@
 <script setup>
+
+
+
 </script>
 
 <template>
@@ -8,8 +11,13 @@
         <h2 class="w90">Mi lista de compras</h2>
 
         <div class="w90 df spaceb centerY">
-            <div id="lugarLista" class="w60 fondoBlanco"></div>
-            <button class="ajusteBoton sinBorde fondoAzul blanco">Descargar como PDF</button>
+
+            <div id="lugarLista" class="w50 fondoBlanco"></div>
+
+            <div class="w45 h100 df columna spacee">
+                <button class="ajusteBoton sinBorde fondoAzul blanco">Generar lista de compras</button>
+                <button class="ajusteBoton sinBorde fondoRojo blanco">Descargar como PDF</button>
+            </div>
         </div>
 
     </section>
