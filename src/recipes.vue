@@ -13,11 +13,26 @@
 
   //armo el array donde vendrán las recetas de cada categoria, vacio para que cuando se haga el fetch, se le asigne el resultado
   const recetas = ref<any[]>([])
+
   interface Meal {
   idMeal: string
   strMeal: string
   strMealThumb: string
   }
+
+  //funcion que recibe una meal y devuelve los ingredientes en un array de strings. uso any porque TheMealDB tiene 20 campos dinámicos.
+  function extraerIngredientes (meal: any): string[]{
+
+    const ingredientes: string[] =[]
+
+    for(let i=1; i<=3; i++){
+      let ingrediente = meal[`strIngredient${i}`];
+      let cantidad = meal[`strMeasure${i}`];
+      ingredientes.push(`${cantidad} ${ingrediente}`)
+    }
+
+    return ingredientes
+  } 
 
   //traigo los datos onMounted
   onMounted(async ()=>{
@@ -40,18 +55,33 @@
 
   //funcion fetch para mostrar recetas luego de tocar una de las categorías
   async function mostrarRecetas(categoria: string){
+
     try {
 
       const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoria}`)
       const data = await res.json()
 
-      //le actualizo el contenido a recetas que ya está declarado arriba
-      recetas.value = data.meals.map((meal: Meal) => ({
-          id: meal.idMeal,
-          titulo: meal.strMeal,
-          imagen: meal.strMealThumb,
-          descripcion: "Descripción pendiente"
-      }))
+      //armo un array de promesas con los detalles de cada receta
+      const recetasCompletas = await Promise.all(
+        data.meals.map(async (meal: Meal)=>{
+          const detalleData = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`)
+          const detalleRes = await detalleData.json()
+          const detalle = detalleRes.meals[0]
+
+          return {
+            id: meal.idMeal,
+            titulo: meal.strMeal,
+            imagen: meal.strMealThumb,
+            descripcion: "Descripción pendiente",
+            ingredientes: extraerIngredientes(detalle)
+          };
+
+        })
+      );
+
+      recetas.value = recetasCompletas
+      console.log(recetas);
+      
 
     } catch (error) {
       console.log(error); 
@@ -91,6 +121,7 @@
           <RecipeCard
             :titulo="element.titulo"
             :imagen="element.imagen"
+            :ingredientes="element.ingredientes"
           />
         </template>
 

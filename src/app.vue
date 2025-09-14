@@ -1,17 +1,36 @@
-<script>
+<script setup>
 
 import Recipes from './recipes.vue'
 import Week from './week.vue';
 import Lista from './lista.vue'
+import { ref } from 'vue';
 
-export default {
-  name: 'App',
-  components: {
-    Recipes,
-    Week,
-    Lista
-  }
-}
+//array de días
+const days = ref([
+        {
+            name: "Lunes",
+            comidasAgregadas: []
+        },
+                {
+            name: "Martes",
+            comidasAgregadas: []
+        },
+                {
+            name: "Miércoles",
+            comidasAgregadas: []
+        },
+                {
+            name: "Jueves",
+            comidasAgregadas: []
+        },
+                {
+            name: "Viernes",
+            comidasAgregadas: []
+        },
+    ])
+
+//lista que se llenará cuando toque en generar lista de ingredientes
+const ingredientesList = ref([])
 
 </script>
 
@@ -25,8 +44,8 @@ export default {
 
       <div class="df columna spaceb w45 centerY vh90">
 
-        <Week class="glass w100" />
-        <Lista id="list" class="glass w100 vh30" />
+        <Week :days="days" class="glass w100" />
+        <Lista :days="days" id="list" class="glass w100 vh30" />
 
       </div>
 

@@ -4,9 +4,10 @@
 
     import MasInfo from './mas-info.vue'
 
-    defineProps<{
-      titulo: string
-      imagen: string
+    defineProps<{ 
+      titulo: string; 
+      imagen: string; 
+      ingredientes?: string[] 
     }>()
 
 </script>

@@ -2,29 +2,12 @@
 
 import { ref } from 'vue'
 import draggable from 'vuedraggable'
+import { defineProps, defineEmits } from "vue"
 
-const days = ref([
-        {
-            name: "Lunes",
-            comidasAgregadas: []
-        },
-                {
-            name: "Martes",
-            comidasAgregadas: []
-        },
-                {
-            name: "Miércoles",
-            comidasAgregadas: []
-        },
-                {
-            name: "Jueves",
-            comidasAgregadas: []
-        },
-                {
-            name: "Viernes",
-            comidasAgregadas: []
-        },
-    ])
+//recibo el array del padre (app.vue)
+const props = defineProps({
+    days: Array
+})
 
 const eliminadas = []
 
@@ -56,7 +39,11 @@ function vaciarMenu (array){
 
             <h4>{{ day.name }}</h4>
 
-            <draggable :list="day.comidasAgregadas" class="comidas df columna" :group="{ name: 'recetas', pull: true, put: true}" item-key="id">
+            <draggable 
+                :list="day.comidasAgregadas" 
+                class="comidas df columna" 
+                :group="{ name: 'recetas', pull: true, put: true}" 
+                item-key="id">
 
                 <template #item="{element}">
 
@@ -67,7 +54,9 @@ function vaciarMenu (array){
                 </template>
 
                   <template #footer>
-                    <p v-if="day.comidasAgregadas.length === 0" class="placeholder">
+                    <p 
+                    v-if="day.comidasAgregadas.length === 0" 
+                    class="placeholder">
                     Arrastra aquí tus recetas
                     </p>
                 </template>

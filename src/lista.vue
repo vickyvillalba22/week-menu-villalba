@@ -1,5 +1,30 @@
 <script setup>
 
+import { ref } from 'vue'
+
+//recibo el array del padre (app.vue)
+const props = defineProps({
+    days: Array
+})
+
+const listaIngredientes = ref([])
+
+function generarLista (){
+
+    const ingredientes = []
+
+    for (let day of props.days){
+
+        for (let comida of day.comidasAgregadas){
+            ingredientes.push(comida.ingredientes)
+        }
+
+    }
+
+    listaIngredientes.value = ingredientes
+
+}
+
 
 
 </script>
@@ -15,8 +40,11 @@
             <div id="lugarLista" class="w50 fondoBlanco"></div>
 
             <div class="w45 h100 df columna spacee">
-                <button class="ajusteBoton sinBorde fondoAzul blanco">Generar lista de compras</button>
+
+                <button @click="generarLista" class="ajusteBoton sinBorde fondoAzul blanco">Generar lista de compras</button>
+
                 <button class="ajusteBoton sinBorde fondoRojo blanco">Descargar como PDF</button>
+
             </div>
         </div>
 
