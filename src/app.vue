@@ -29,8 +29,7 @@ const days = ref([
         },
     ])
 
-//lista que se llenará cuando toque en generar lista de ingredientes
-const ingredientesList = ref([])
+
 
 </script>
 

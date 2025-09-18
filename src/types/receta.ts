@@ -1,12 +1,13 @@
-type Preparacion = {
-    [paso: string] : string
+type Ingrediente = {
+    nombre: string,
+    medida?: string | null
 }
 
 type Receta = {
     title: string
+    image: string
     description: string
-    precio ?: string
-    preparacion: Preparacion
+    ingredientes: Ingrediente[]
 }
 
-export {type Receta}
+export { type Receta, type Ingrediente }

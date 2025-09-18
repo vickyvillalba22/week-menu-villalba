@@ -5,34 +5,48 @@
   import RecipeCard from './components/recipeCard.vue'
   import draggable from 'vuedraggable'
 
+  import { type Receta, type Ingrediente } from './types/receta'
+
   let appTitle = "Recetas ideales para cada día"
 
   //armo el lugar donde vendrá el array de categorias: reactivo y con tipo. y defino su valor inicial: array vacio
   const categorias = ref<string[]>([])
   interface Categoria { strCategory: string }
 
-  //armo el array donde vendrán las recetas de cada categoria, vacio para que cuando se haga el fetch, se le asigne el resultado
-  const recetas = ref<any[]>([])
+  //array de recetas procesadas
+  const recetas = ref<Receta[]>([])
 
-  interface Meal {
-  idMeal: string
-  strMeal: string
-  strMealThumb: string
-  }
+  //tipo de lo que viene de la api
+  type ApiReceta = {
+    idMeal: string;
+    strMeal: string;
+    strMealThumb: string;
+    strInstructions: string;
+    [key: string]: string | null; // para cubrir strIngredientN, strMeasureN
+  };
 
-  //funcion que recibe una meal y devuelve los ingredientes en un array de strings. uso any porque TheMealDB tiene 20 campos dinámicos.
-  function extraerIngredientes (meal: any): string[]{
+  //funcion que procesa los ingredientes de cada receta
+  function extraerIngredientes (detalle: ApiReceta): Ingrediente[] {
 
-    const ingredientes: string[] =[]
+    //array donde se insertarán los ingredientes de tipo Ingrediente
+    const ingredientes: Ingrediente[] = []
 
-    for(let i=1; i<=3; i++){
-      let ingrediente = meal[`strIngredient${i}`];
-      let cantidad = meal[`strMeasure${i}`];
-      ingredientes.push(`${cantidad} ${ingrediente}`)
+    //recorro los ingredientes, los junto con sus medidas y los pusheo al array
+    for(let i=1; i<21; i++){
+      let nombre = detalle[`strIngredient${i}`]
+      let medida = detalle[`strMeasure${i}`]
+
+      if (nombre && nombre !== ""){
+        ingredientes.push({
+          nombre: nombre,
+          medida: medida
+        })
+      }
     }
 
     return ingredientes
-  } 
+
+  }
 
   //traigo los datos onMounted
   onMounted(async ()=>{
@@ -63,7 +77,7 @@
 
       //armo un array de promesas con los detalles de cada receta
       const recetasCompletas = await Promise.all(
-        data.meals.map(async (meal: Meal)=>{
+        data.meals.map(async (meal: ApiReceta)=>{
           const detalleData = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`)
           const detalleRes = await detalleData.json()
           const detalle = detalleRes.meals[0]
@@ -80,7 +94,6 @@
       );
 
       recetas.value = recetasCompletas
-      console.log(recetas);
       
 
     } catch (error) {
