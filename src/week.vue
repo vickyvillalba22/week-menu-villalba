@@ -23,9 +23,9 @@ function vaciarMenu (array){
 
 <template>
 
-    <div class="menuSemanal df columna spacee centerY">
+    <div class="menuSemanal df columna spacee centerX centerY">
 
-    <div class="w90 df spaceb centerY">
+    <div class="w90 df spaceb centerY centerX">
 
         <h2>Mi menú semanal</h2>
 
@@ -33,7 +33,7 @@ function vaciarMenu (array){
 
     </div>
 
-    <div id="semana" class="w100">
+    <div id="semana" class="w90">
 
         <div v-for="day in days" class="textCenter dia"> 
 
@@ -47,7 +47,7 @@ function vaciarMenu (array){
 
                 <template #item="{element}">
 
-                    <div class="fondoBlanco cardcita">
+                    <div class="cardcita">
                         <p>{{ element.titulo }}</p>
                     </div>
 
@@ -76,7 +76,7 @@ function vaciarMenu (array){
 
             <template #footer>
 
-                <div class="df centerY w40 spacee">
+                <div class="df centerY spacee w35">
 
                     <i class="fi fi-rr-circle-trash df centerY"></i>
 
@@ -99,6 +99,13 @@ function vaciarMenu (array){
 
     .menuSemanal{
         height: 55vh;
+    }
+
+    .w90{
+        width: 90%;
+    }
+    .w35{
+        width: 35%;
     }
 
     #semana{
@@ -125,7 +132,8 @@ function vaciarMenu (array){
         padding: 5px;
     }
     button{
-        font-size: 16px;
+        font-size: 14px;
+        padding: 6px;
     }
     .comidas{
         height: 35vh;
@@ -135,7 +143,7 @@ function vaciarMenu (array){
     .cardcita{
         border-radius: 8px;
         padding: 10px;
-
+        background-color: white;
     }
     .cardcita p{
         font-size: 13px;

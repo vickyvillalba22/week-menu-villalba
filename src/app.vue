@@ -35,16 +35,16 @@ const days = ref([
 
 <template>
 
-    <div class="df columna centerX centerY vh100 spacee w100">
+    <div class="padre df columna centerX centerY spacee w100">
 
-    <div class="w90 df spacee">
+    <div class="df spacee hijo">
 
-      <Recipes id="recipes" class="w45 vh90 df centerX centerY glass" />
+      <Recipes id="recipes" class="mitad df centerX centerY glass" />
 
-      <div class="df columna spaceb w45 centerY vh90">
+      <div class="df columna spaceb centerY mitad">
 
         <Week :days="days" class="glass w100" />
-        <Lista :days="days" id="list" class="glass w100 vh30" />
+        <Lista :days="days" id="list" class="glass w100" />
 
       </div>
 
@@ -53,3 +53,24 @@ const days = ref([
 </div>
 
 </template>
+
+<style scoped>
+
+    .padre{
+        height: 100vh;
+    }
+
+    .hijo{
+        width: 90%;
+    }
+
+    .mitad{
+        width: 45%;
+        height: 90vh;
+    }
+
+    #list{
+        height: 30vh;
+    }
+
+</style>

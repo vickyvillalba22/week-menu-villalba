@@ -39,7 +39,7 @@ function generarLista (){
 
             <div id="lugarLista" class="w50 fondoBlanco"></div>
 
-            <div class="w45 h100 df columna spacee">
+            <div class="botones df columna spacee">
 
                 <button @click="generarLista" class="ajusteBoton sinBorde fondoAzul blanco">Generar lista de compras</button>
 
@@ -54,10 +54,24 @@ function generarLista (){
 
 <style scoped>
 
+    .w90{
+        width: 90%;
+    }
+    .w50{
+        width: 50%;
+    }
+
     #lugarLista{
         height: 15vh;
         border-radius: 15px;
+        background-color: white;
     }
+
+    .botones{
+        width: 45%;
+        height: 15vh;
+    }
+
     button{
         font-size: 16px;
         padding: 7px 15px;

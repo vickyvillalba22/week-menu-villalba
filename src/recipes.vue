@@ -105,15 +105,15 @@
 
 <template> 
 
-  <div class="w90 vh90"> <!--este es el componente recipes-->
+  <div class="recipes"> <!--este es el componente recipes-->
 
-    <div id="cont1" class="w90 df columna">
+    <div id="cont1" class="df columna">
     <!--titulo princi dinamico-->
     <h1 v-html="appTitle" class="w100"></h1>
 
     <!--buscador-->
     <div id="buscador" class="df spaceb w100">
-      <input type="text" name="" id="buscador" class="w80 sinBorde bordeRedondo">
+      <input type="text" name="" class="barra sinBorde bordeRedondo">
       <button id="buscar" class="ajusteBoton sinBorde fondoTransparente"><i class="fi fi-rr-search"></i></button>
       <button id="filtrar" class="fondoRojo sinBorde ajusteBoton blanco"><i class="fi fi-rr-filter"></i></button>
     </div>
@@ -128,7 +128,7 @@
     </div>
 
     <!--recetas-->
-      <draggable :list="recetas" item-key="id" id="meals" class="df wrap vh50 w100" :group="{ name: 'recetas', pull: 'clone', put: false}">
+      <draggable :list="recetas" item-key="id" id="meals" class="df wrap w100" :group="{ name: 'recetas', pull: 'clone', put: false}">
 
         <template #item="{ element }">
           <RecipeCard
@@ -151,6 +151,7 @@
 
   #cont1{
     gap: 20px;
+    width: 90%;
     height: 80vh;
   }
 
@@ -162,11 +163,20 @@
     height: 30px;
   }
 
+  .barra{
+    width: 85%;
+  }
+
+  .fondoBlanco{
+    background-color: white;
+  }
+
   #meals{
     gap: 15px;
     overflow: hidden;
     overflow: auto;
     scroll-behavior: smooth;
+    height: 50vh;
   }
 
 </style>

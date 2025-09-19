@@ -37,12 +37,11 @@ h3{
 .cardRecipe {
 
   width: 30%;
-  height: 35vh;
+  height: 38vh;
 
   border-radius: 10px;
   padding: 1rem;
 
-  text-align: center;
   background: #fff;
 
 }
