@@ -19,6 +19,7 @@ function vaciarMenu (array){
 
 }
 
+
 </script>
 
 <template>
@@ -35,7 +36,7 @@ function vaciarMenu (array){
 
     <div id="semana" class="w90">
 
-        <div v-for="day in days" class="textCenter dia"> 
+        <div v-for="(day, dayIndex) in days" class="textCenter dia"> 
 
             <h4>{{ day.name }}</h4>
 
@@ -43,15 +44,17 @@ function vaciarMenu (array){
                 :list="day.comidasAgregadas" 
                 class="comidas df columna" 
                 :group="{ name: 'recetas', pull: true, put: true}" 
-                item-key="id">
+                item-key="id"
+                >
 
-                <template #item="{element}">
+                <template #item="{element, index}">
 
                     <div class="cardcita">
                         <p>{{ element.titulo }}</p>
                     </div>
 
                 </template>
+                
 
                   <template #footer>
                     <p 
@@ -141,6 +144,7 @@ function vaciarMenu (array){
     }
 
     .cardcita{
+        width: 100%;
         border-radius: 8px;
         padding: 10px;
         background-color: white;
