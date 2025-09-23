@@ -85,18 +85,18 @@ function descargarLista(){
 
     <div class="padre df columna centerX centerY spacee w100">
 
-    <div class="df spacee hijo">
+        <div class="df spacee hijo">
 
-      <Recipes id="recipes" class="mitad df centerX centerY glass" />
+        <Recipes id="recipes" class="mitad df centerX centerY glass" />
 
-      <div class="df columna spaceb centerY mitad">
+        <div class="df columna spaceb centerY mitad">
 
-        <Week :days="days" class="glass w100" @vaciar="vaciarMenu(days)" />
-        <Lista :ingredientes="listaIngredientes"
-        @generarLista="generarLista"
-        @descargarLista = "descargarLista" id="list" class="glass w100" />
+            <Week :days="days" class="glass w100" @vaciar="vaciarMenu(days)" />
+            <Lista :ingredientes="listaIngredientes"
+            @generarLista="generarLista"
+            @descargarLista = "descargarLista" id="list" class="glass w100" />
 
-      </div>
+        </div>
 
     </div>
 
@@ -121,6 +121,24 @@ function descargarLista(){
 
     #list{
         height: 30vh;
+    }
+
+    @media screen and (max-width: 500px){
+        .hijo{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .mitad{
+            width: 90%;
+        }
+        #recipes{
+            height: 60vh;
+        }
     }
 
 </style>

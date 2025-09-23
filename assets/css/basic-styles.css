@@ -113,11 +113,6 @@ h1,h2,h3,h4,p,button,span,input{
     width: 100%;
 }
 
-.ajusteBoton{
-    padding: 10px;
-    border-radius: 5px;
-}
-
 /*visibilidad*/
 .invisible{
     display: none;
@@ -126,14 +121,22 @@ h1,h2,h3,h4,p,button,span,input{
     display: block;
 }
 
-    /* el clon que muestra dónde se soltará */
-    .sortable-ghost {
-        background: #e0f7fa !important;
-        border: 2px dashed #00bcd4 !important;
-        opacity: 0.9 !important;
-    }
+/* el clon que muestra dónde se soltará */
+.sortable-ghost {
+    background: #e0f7fa !important;
+    border: 2px dashed #00bcd4 !important;
+    opacity: 0.9 !important;
+}
 
-    /* el item agarrado */
-    .sortable-chosen {
-        opacity: 0.5;
+/* el item agarrado */
+.sortable-chosen {
+    opacity: 0.5;
+}
+
+@media screen and (max-height: 500px){
+    body{
+        background-image: url("../imgs/fondo-mobile.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
     }
+}

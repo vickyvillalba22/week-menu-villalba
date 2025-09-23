@@ -72,6 +72,21 @@ const emit = defineEmits(['generarLista', 'descargarLista'])
     button{
         font-size: 16px;
         padding: 7px 15px;
+        border-radius: 5px;
+    }
+
+    @media screen and (max-width: 900px){
+        h2{
+            font-size: medium;
+        }
+        button{
+            font-size: 12px;
+            padding: 7px 15px;
+            border-radius: 5px;
+        }
+        p{
+            font-size: 12px;
+        }
     }
 
 </style>

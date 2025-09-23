@@ -31,7 +31,7 @@ const eliminadas = []
 
         <div v-for="(day, dayIndex) in days" class="textCenter dia"> 
 
-            <h4>{{ day.name }}</h4>
+            <h4 class="textCenter">{{ day.name }}</h4>
 
             <draggable 
                 :list="day.comidasAgregadas" 
@@ -65,14 +65,14 @@ const eliminadas = []
             :list="eliminadas" 
             item-key="id" 
             :group="{ name: 'recetas', pull: false, put: true }" id="eliminadas" 
-            class="df centerX">
+            class="df centerX w100">
 
             <!-- Slot item requerido -->
             <template #item="{ element }"></template>
 
             <template #footer>
 
-                <div class="df centerY spacee w35">
+                <div class="df centerY spacee w35 elementoEliminadas">
 
                     <i class="fi fi-rr-circle-trash df centerY"></i>
 
@@ -106,7 +106,7 @@ const eliminadas = []
 
     #semana{
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(5, 20%);
         gap: 10px;
         padding: 10px;
     }
@@ -124,12 +124,10 @@ const eliminadas = []
         font-size: 25px;
         color: #FA7459;
     }
-    h4{
-        padding: 5px;
-    }
     button{
         font-size: 14px;
         padding: 6px;
+        border-radius: 8px;
     }
     .comidas{
         height: 35vh;
@@ -149,6 +147,33 @@ const eliminadas = []
     .placeholder{
         font-size: 12px;
         color: gray;
+    }
+
+    @media screen and (max-width: 900px){
+        #semana{
+            display: grid;
+            grid-template-columns: repeat(5, 18%);
+            gap: 5px;
+            padding: 10px;
+        }
+        h2{
+            font-size: medium;
+        }
+        h4{
+            font-size: 12px;
+        }
+        .placeholder{
+            font-size: 10px;
+        }
+        button{
+            font-size: 12px;
+        }
+        #semana{
+            width: 100%;
+        }
+        .elementoEliminadas{
+            width: 70%;
+        }
     }
 
 </style>

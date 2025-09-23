@@ -176,4 +176,30 @@
     height: 50vh;
   }
 
+  .ajusteBoton{
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  @media screen and (max-width: 900px){
+    h1{
+      font-size: 22px;
+    }
+    .ajusteBoton{
+      padding: 6px;
+      border-radius: 5px;
+    }
+    .barra{
+      width: 75%;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+      #cont1{
+        gap: 20px;
+        width: 90%;
+        height: 55vh;
+      }
+  }
+
 </style>
