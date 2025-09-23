@@ -11,12 +11,6 @@
     border: 2px solid red;
 }
 
-body{
-    background-image: url("../imgs/back4.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 .glass{
     background-color: rgba(226, 226, 226, 0.499);
     border-radius: 16px;                   /* bordes redondeados */
@@ -131,12 +125,4 @@ h1,h2,h3,h4,p,button,span,input{
 /* el item agarrado */
 .sortable-chosen {
     opacity: 0.5;
-}
-
-@media screen and (max-height: 500px){
-    body{
-        background-image: url("../imgs/fondo-mobile.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
 }

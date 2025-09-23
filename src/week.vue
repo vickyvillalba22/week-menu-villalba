@@ -29,7 +29,7 @@ const eliminadas = []
 
     <div id="semana" class="w90">
 
-        <div v-for="(day, dayIndex) in days" class="textCenter dia"> 
+        <div v-for="(day, dayIndex) in days" class="textCenter dia df columna"> 
 
             <h4 class="textCenter">{{ day.name }}</h4>
 
@@ -106,12 +106,15 @@ const eliminadas = []
 
     #semana{
         display: grid;
-        grid-template-columns: repeat(5, 20%);
+        grid-template-columns: repeat(5, 18%);
         gap: 10px;
         padding: 10px;
+
+        place-content: center;
     }
     .dia{
         height: 35vh;
+        gap: 10px;
     }
     #eliminadas{
         grid-column: 1 / span 5;
@@ -155,6 +158,8 @@ const eliminadas = []
             grid-template-columns: repeat(5, 18%);
             gap: 5px;
             padding: 10px;
+
+            place-content: center;
         }
         h2{
             font-size: medium;
@@ -173,6 +178,10 @@ const eliminadas = []
         }
         .elementoEliminadas{
             width: 70%;
+        }
+
+        .cardcita p{
+            font-size: 10px;
         }
     }
 

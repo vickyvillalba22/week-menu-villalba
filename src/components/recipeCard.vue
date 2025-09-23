@@ -2,7 +2,6 @@
 
     import { ref } from 'vue'
 
-    import MasInfo from './mas-info.vue'
     import { type Receta } from '../types/receta'
 
     defineProps<{ 

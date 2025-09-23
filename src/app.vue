@@ -107,7 +107,11 @@ function descargarLista(){
 <style scoped>
 
     .padre{
-        height: 100vh;
+        min-height: 100vh;
+
+        background-image: url("../assets/imgs/back4.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     .hijo{
@@ -124,6 +128,9 @@ function descargarLista(){
     }
 
     @media screen and (max-width: 500px){
+        .padre{
+            background-image: url("../assets/imgs/fondo-mobile.jpg");
+        }
         .hijo{
             display: flex;
             flex-direction: column;
