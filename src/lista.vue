@@ -1,31 +1,14 @@
 <script setup>
 
 import { ref } from 'vue'
+import { defineProps, defineEmits } from "vue"
 
 //recibo el array del padre (app.vue)
 const props = defineProps({
-    days: Array
+    ingredientes: Array
 })
 
-const listaIngredientes = ref([])
-
-function generarLista (){
-
-    const ingredientes = []
-
-    for (let day of props.days){
-
-        for (let comida of day.comidasAgregadas){
-            ingredientes.push(comida.ingredientes)
-        }
-
-    }
-
-    listaIngredientes.value = ingredientes
-
-}
-
-
+const emit = defineEmits(['generarLista', 'descargarLista'])
 
 </script>
 
@@ -37,13 +20,22 @@ function generarLista (){
 
         <div class="w90 df spaceb centerY">
 
-            <div id="lugarLista" class="w50 fondoBlanco"></div>
+            <div id="lugarLista" class="w50 fondoBlanco">
+                <ul v-if="props.ingredientes.length > 0" class="sinItem">
+                    <li v-for="(ingrediente, i) in props.ingredientes" :key="i">
+                        {{ ingrediente.nombre }} – {{ ingrediente.medida }}
+                    </li>
+                </ul>
+                <p v-else>Aún no hay ingredientes</p>
+            </div>
 
             <div class="botones df columna spacee">
 
-                <button @click="generarLista" class="ajusteBoton sinBorde fondoAzul blanco">Generar lista de compras</button>
+                <button @click="emit('generarLista')" class="ajusteBoton sinBorde fondoAzul blanco">Generar lista de compras</button>
 
-                <button class="ajusteBoton sinBorde fondoRojo blanco">Descargar como PDF</button>
+                <button 
+                @click="emit('descargarLista')"
+                class="ajusteBoton sinBorde fondoRojo blanco">Descargar como PDF</button>
 
             </div>
         </div>
@@ -65,6 +57,11 @@ function generarLista (){
         height: 15vh;
         border-radius: 15px;
         background-color: white;
+
+        overflow: hidden;
+        overflow-y: scroll;
+
+        padding: 15px;
     }
 
     .botones{

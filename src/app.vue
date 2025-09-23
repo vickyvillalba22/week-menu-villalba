@@ -29,6 +29,46 @@ const days = ref([
         },
     ])
 
+const listaIngredientes = ref([])
+
+function generarLista (){
+
+    const ingredientes = []
+
+    for (let day of days.value){
+
+        for (let comida of day.comidasAgregadas){
+            ingredientes.push(...comida.ingredientes)
+        }
+
+    }
+
+    listaIngredientes.value = ingredientes
+    //console.log(listaIngredientes.value);
+
+}
+
+function vaciarMenu (array){
+
+    for(let day of array){
+        day.comidasAgregadas.length = 0
+    }
+
+    generarLista()
+    
+
+}
+
+function descargarLista(){
+
+    const doc = new jsPDF()
+
+    doc.text("Lista de ingredientes", 10, 20)
+
+    doc.save("ingredientes.pdf")
+
+}
+
 
 
 </script>
@@ -43,8 +83,10 @@ const days = ref([
 
       <div class="df columna spaceb centerY mitad">
 
-        <Week :days="days" class="glass w100" />
-        <Lista :days="days" id="list" class="glass w100" />
+        <Week :days="days" class="glass w100" @vaciar="vaciarMenu(days)" />
+        <Lista :ingredientes="listaIngredientes"
+        @generarLista="generarLista"
+        @descargarLista = "descargarLista" id="list" class="glass w100" />
 
       </div>
 

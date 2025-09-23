@@ -94,6 +94,8 @@
       );
 
       recetas.value = recetasCompletas
+      //console.log(recetas.value);
+      
       
 
     } catch (error) {

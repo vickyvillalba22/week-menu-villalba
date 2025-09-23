@@ -9,16 +9,9 @@ const props = defineProps({
     days: Array
 })
 
+const emit = defineEmits(['vaciar'])
+
 const eliminadas = []
-
-function vaciarMenu (array){
-
-    for(let day of array){
-        day.comidasAgregadas.length = 0
-    }
-
-}
-
 
 </script>
 
@@ -30,7 +23,7 @@ function vaciarMenu (array){
 
         <h2>Mi menú semanal</h2>
 
-        <button @click="vaciarMenu(days)" class="ajusteBoton sinBorde fondoRojo blanco">Vaciar menú</button>
+        <button @click="emit('vaciar')" class="ajusteBoton sinBorde fondoRojo blanco">Vaciar menú</button>
 
     </div>
 
