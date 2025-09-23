@@ -5,6 +5,8 @@ import Week from './week.vue';
 import Lista from './lista.vue'
 import { ref } from 'vue';
 
+import { jsPDF } from "jspdf";
+
 //array de días
 const days = ref([
         {
@@ -64,6 +66,12 @@ function descargarLista(){
     const doc = new jsPDF()
 
     doc.text("Lista de ingredientes", 10, 20)
+
+    console.log(listaIngredientes.value);
+
+    listaIngredientes.value.forEach((ing, i) => {
+        doc.text(`${i + 1}. ${ing.nombre} - ${ing.medida}`, 20, 30 + i * 10);
+    });
 
     doc.save("ingredientes.pdf")
 
