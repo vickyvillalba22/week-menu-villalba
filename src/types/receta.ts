@@ -4,9 +4,9 @@ type Ingrediente = {
 }
 
 type Receta = {
-    title: string
-    image: string
-    description: string
+    titulo: string
+    imagen: string
+    descripcion: string
     ingredientes: Ingrediente[]
 }
 

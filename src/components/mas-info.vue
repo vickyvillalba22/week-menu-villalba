@@ -1,5 +1,11 @@
+<script setup>
+
+</script>
+
 <template>
+
     <button class="ajusteBoton sinBorde blanco">Mas info</button>
+
 </template>
 
 <style scoped>

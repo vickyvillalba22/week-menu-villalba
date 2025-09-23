@@ -3,25 +3,51 @@
     import { ref } from 'vue'
 
     import MasInfo from './mas-info.vue'
+    import { type Receta } from '../types/receta'
 
     defineProps<{ 
-      titulo: string; 
-      imagen: string; 
-      ingredientes?: string[] 
+      receta: Receta
     }>()
+
+    //creo una var reactiva para el estado de la card
+    const mostrarInfo = ref(false) 
+
+    function toggleInfo(){
+
+      //if(e?.stopPropagation) e.stopPropagation()
+
+      //cambio el estado 
+      mostrarInfo.value = !mostrarInfo.value
+    }
 
 </script>
 
 <template>
 
-  <div class="cardRecipe df columna spaceb">
+  <div class="card-inner" :class="{ flipped: mostrarInfo }">
 
-    <img :src="imagen" alt="Imagen de receta" />
-    <h3 class="w100">{{ titulo }}</h3>
+  <!--card-front-->
+  <div v-if="!mostrarInfo" class="card-front df columna spaceb">
+
+    <img :src="receta.imagen" alt="Imagen de receta" />
+    <h3 class="w100">{{ receta.titulo }}</h3>
 
     <div class="botones df spaceb w100 centerY centerX">
-      <MasInfo />
+      <button @click.stop="toggleInfo">Más info</button>
     </div>
+
+  </div>
+
+  <!--card-back-->
+  <div v-else class="card-back">
+      <h3>{{ receta.titulo }}</h3>
+      <ul>
+          <li v-for="(ing, i) in receta.ingredientes || []" :key="i">
+              {{ receta.ingredientes[i].nombre }} - {{ receta.ingredientes[i].medida }}
+          </li>
+      </ul>
+      <button @click.stop="toggleInfo">Volver</button>
+  </div>
 
   </div>
 
@@ -34,7 +60,7 @@ h3{
   font-weight: 500;
 }
 
-.cardRecipe {
+.card-front {
 
   width: 30%;
   height: 38vh;

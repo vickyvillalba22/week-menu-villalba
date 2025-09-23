@@ -95,8 +95,6 @@
 
       recetas.value = recetasCompletas
       //console.log(recetas.value);
-      
-      
 
     } catch (error) {
       console.log(error); 
@@ -134,11 +132,7 @@
       ">
 
         <template #item="{ element }">
-          <RecipeCard
-            :titulo="element.titulo"
-            :imagen="element.imagen"
-            :ingredientes="element.ingredientes"
-          />
+          <RecipeCard :receta="element" />
         </template>
 
       </draggable>
