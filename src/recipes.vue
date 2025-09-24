@@ -13,6 +13,13 @@
   const categorias = ref<string[]>([])
   interface Categoria { strCategory: string }
 
+  const catActiva = ref("")
+
+  function selectCategoria (cat: string){
+    catActiva.value = cat
+    mostrarRecetas(cat)
+  }
+
   //array de recetas procesadas
   const recetas = ref<Receta[]>([])
 
@@ -113,15 +120,23 @@
 
     <!--buscador-->
     <div id="buscador" class="df spaceb w100">
-      <input type="text" name="" class="barra sinBorde bordeRedondo">
+      <input type="text" name="" class="barra sinBorde bordeRedondo" placeholder="la barra de búsqueda aún no funciona">
       <button id="buscar" class="ajusteBoton sinBorde fondoTransparente"><i class="fi fi-rr-search"></i></button>
-      <button id="filtrar" class="fondoRojo sinBorde ajusteBoton blanco"><i class="fi fi-rr-filter"></i></button>
+      <button id="filtrar" class="sinBorde ajusteBoton blanco"><i class="fi fi-rr-filter"></i></button>
     </div>
 
     <!--categorias-->
     <div id="categorias" class="w100 df wrap">
 
-      <button @click="mostrarRecetas(cat)" v-for="cat in categorias" :key="cat" class="ajusteBoton sinBorde fondoBlanco">
+      <button 
+      @click="selectCategoria(cat)" 
+      v-for="cat in categorias"
+        :class="[
+          'ajusteBoton', 'sinBorde', 'fondoBlanco',  
+          { activo: catActiva === cat }  
+        ]"
+      :key="cat" 
+      >
         {{ cat }}
       </button>
 
@@ -145,6 +160,13 @@
 </template>
 
 <style scoped>
+
+  input{
+    padding-left: 15px;
+  }
+  #buscar{
+    color: rgb(193, 193, 193);
+  }
 
   #cont1{
     gap: 20px;
@@ -179,6 +201,11 @@
   .ajusteBoton{
     padding: 10px;
     border-radius: 5px;
+  }
+
+  .activo{
+    background-color: #FA7459;
+    color: white;
   }
 
   @media screen and (max-width: 900px){
